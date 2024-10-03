@@ -1,3 +1,7 @@
-# Derek Hilder
+# Introduction
 
-TODO: list projects, including Oooh
+TODO: Describe what I do.
+
+# Projects
+
+[Oooh](oooh/index.md)
