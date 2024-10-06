@@ -79,6 +79,7 @@ The services were implemented in a variety of languages, including Java, Python,
 
 Most services provided a REST API, but some also provided a GraphQL API, which was implemented using the Netflix DGS framework. The Apollo Router was used to federate GraphQL queries across the various services, and to provide a single schema for the platform's data model. The services were also loosely coupled using a publish/subscribe model based on Spring Cloud Stream and Kafka.
 
+All totaled, the platform consisted of 20 services and 14 libraries contributing to a code base of over 284,000 lines of code. There were over 2100 integration tests that covered 70% of the code.  
 The various categories of services the platform provided are described below.
 
 ### Account Management
