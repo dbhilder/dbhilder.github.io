@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QTim Cham - Backend Engineer\nSimon Roscoe - Full Stack Engineer\nWuilbert Jaramillo - Server Engineer\nJay Shanks - DevOps Engineer\nDanielle Tilley - Tools Engineer\nCalham Northway - Tools Engineer\\E$"}

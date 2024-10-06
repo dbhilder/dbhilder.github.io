@@ -1,3 +1,11 @@
-theme: jekyll-theme-minimal
 title: Derek Hilder
-description: Portfolio of projects I've worked on.
+description: Experienced software engineer with a proven track record of designing, implementing, and maintaining scalable web services in cloud environments. Proficient in leading cross-functional teams, driving innovation, and ensuring the security and reliability of backend systems. Excels in developing high-quality, testable software and fostering collaborative environments
+
+# layout: midnight-default
+
+# theme: jekyll-theme-minimal
+# theme: jekyll-theme-slate
+theme: jekyll-theme-midnight
+
+plugins:
+  - jekyll-feed
