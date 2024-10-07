@@ -5,8 +5,16 @@
 *Service architecture for the Oooh platform*
 
 [Java Ranking System](jrs/index.md)  
-*A ranking system for the Sun Game Server*
+*A player ranking system for the Sun Game Server*
 
+<!--
 # Posts
 
-[2024-10-04](_posts/2024-10-04-welcome-to-jekyll.markdown)
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="./{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+-->
