@@ -160,6 +160,7 @@ They are a diverse group of individuals with a wide range of skills and backgrou
 - [Tim Cham](https://www.linkedin.com/in/timothy-cham/) - Backend Engineer
 - [Simon Roscoe](https://www.linkedin.com/in/simon-roscoe/) - Full Stack Engineer
 - [Wuilbert Jaramillo](https://www.linkedin.com/in/wuilbert-jaramillo-175190b/) - Server Engineer
+- [Yuefeng (Maxon) Zhao](https://www.linkedin.com/in/yuefeng-zhao/) - Jr Server Engineer
 - [Jay Shanks](https://www.linkedin.com/in/jay-shanks-6027aa9/) - DevOps Engineer
 - [Danielle Tilley](https://www.linkedin.com/in/danielle-tilley/) - Tools Engineer
 - [Calham Northway](https://www.linkedin.com/in/calham-northway-643890158/) - Tools Engineer
