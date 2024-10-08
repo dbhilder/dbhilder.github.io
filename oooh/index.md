@@ -71,6 +71,10 @@ In accordance with AWS best practices, the production environment was hosted in 
 
 The EKS clusters were set up with an A/B configuration to allow upgrades and other infrastructure changes to be verified before switching traffic over. Typically, the clusters would be upgraded once per year, starting with the load test cluster, which would undergo rigorous testing before migrating the changes to the nonprod cluster. After the development team verified there were no issues introduced by the upgrade, the changes were then applied to the inactive prod cluster where a final set of verification checks were done before switching live traffic over to it. The previously active cluster would be left running for a few days in case any issues arose, upon which traffic would be switched back. Finally, when all environments were stable, the inactive clusters would be shut down, though not destroyed. This allowed us to have the inactive clusters available for disaster recovery within a few minutes, should we have needed that, but put them in a state that incurred minimal cost.
 
+This configuration allowed the cluster to remain available across upgrades with no downtime. In fact, over its 5 year history, the architecture only experienced 6 hours of downtime, the bulk of which was due to an interruption to the AWS region it was hosted in.
+
+![Uptime History](../assets/oooh_uptime_history.png)
+
 # Services
 
 The heart of the platform was a set of microservices that provided the core functionality of the app. These services were designed to be loosely coupled, so that they could be developed and deployed independently. This allowed the team to iterate quickly on features, and to scale the services independently as needed.  
@@ -84,7 +88,7 @@ The various categories of services the platform provided are described below.
 
 ### Account Management
 
-While Firebase provided the authentication and authorization services for the mobile app, there was still a need to manage the user data and preferences that were specific to our platform. This included things like display names, avatars, and various account settings and preferences. The account service provided a REST API that the app and customer support tools could use to manage these settings.
+While Firebase provided the authentication and authorization services for the mobile app, there was still a need to manage the user data and preferences that were specific to our platform. This included things like display names, avatars, and various account settings and preferences. The account service provided both a REST and GraphQL API that the app and customer support tools could use to manage these settings.
 
 ### Chat
 
@@ -110,19 +114,19 @@ To encourage user engagement, the platform included a progression system that wo
 
 ### Recommendation
 
-The recommendation service provided a way to generate recommendations for users based on their activity on the platform. Initially, the service used a simple algorithm based on activity reported by other services, but was later integrated with Recombee, a third-party service that provided content based and collaboration filtering. This was later replaced with a custom network-based recommendation system that used a matrix of weighted relationships generated from BI data. This provided a more flexible and cost-effective solution that could be tuned to the needs of the platform.  
+The recommendation service provided a way to generate recommendations for users based on their activity on the platform. Initially, the service used a simple algorithm based on activity reported by other services, but was later integrated with Recombee, a third-party service that provided content based and collaborative filtering. This was later replaced with a custom network-based recommendation system that used a matrix of weighted relationships generated from BI data. This provided a more flexible and cost-effective solution that could be tuned to the needs of the platform.  
+
 As generative AI services became more widely available, the service was extended to use embeddings generated from user and group content to find similar users and groups. 
 
 ### Monetization
 
-The platform needed a way to generate revenue to support its operations, so a suite of services was developed to support virtual goods and currency.
-This included a service to integrate with the various app stores (Google Play and Apple App Store) to handle in-app purchases and mapping those purchases to a virtual currency, a commerce service to manage the exchange of virtual goods, and an inventory service to track the ownership of each user's virtual goods.
+The platform needed a way to generate revenue to support its operations, so a suite of services was developed to support virtual goods and currency. This included a service to integrate with the various app stores (Google Play and Apple App Store) and map in-app purchases to a virtual currency. It also included a commerce service to manage the exchange of virtual goods, as well as an inventory service to track the ownership of each user's virtual goods.
 
 A unique aspect of the Oooh platform is that it allowed users to earn real money by creating and selling virtual goods. This required a complex system to track the real value of each virtual coin so that we could accurately calculate the amount to pay out to users who sold their virtual goods. There were also mechanisms in place to handle app store refunds and the implications of those on the virtual economy.
 
 ### Platform Extensions
 
-In order to explore the use if generative AI in the platform, a serverless extension system was designed to support developers outside the core team who wanted to extend the platform with their own functionality. This system allowed developers to write custom extensions in either JavaScript or Python and deploy them as serverless applications that could be installed on the platform. We used this extension mechanism to implement features that leveraged various AI APIs to do things like generate summaries of group chat, identify popular threads of conversation, and recommend news articles and other links related to the conversation. This extension system also supported chatbots to answer questions about the platform, provide support, or generally respond to queries from the users, but within the context of the group chat in which they were posted.
+In order to explore the use of generative AI in the platform, a serverless extension system was designed to support developers outside the core team who wanted to extend the platform with their own functionality. This system allowed developers to write custom extensions in either JavaScript or Python and deploy them as serverless applications that could be installed on the platform. We used this extension mechanism to implement features that leveraged various AI APIs to do things like generate summaries of group chat, identify popular threads of conversation, and recommend news articles and other links related to the conversation. This extension system also supported chatbots to answer questions about the platform, provide support, or generally respond to queries from the users, but within the context of the group chat in which they were posted.
 
 ### Community Support Tools
 
@@ -138,7 +142,7 @@ The full CI/CD pipeline is depicted below.
 
 ![CI/CD Pipeline](../assets/oooh_ci-cd.png)
 
-As the diagram shows, the pipeline starts with a commit to the GitHub repository. This triggers a build in CircleCI, which runs the integration tests and builds a Docker image. If the build is successful, the image is pushed to the ECR repository. The FluxCD operator in the cluster watches the ECR repository for changes, and for environments where auto deploy is enabled, it updates the HelmRelease resource for the service with the updated image tag which triggers an update to the cluster. For environments where auto deploy is not enabled, such as stage and production, the HelmRelease resource is manually updated with the new image tag by and admin and committed to the Git repo which triggers the update to the cluster. The HelmRelease resource also defines all the values for the service's Helm chart, so updates to the various Kubernetes and Istio configurations, as well as application specific properties, can be applied in the manner and will be fully auditable and reversible.
+As the diagram shows, the pipeline starts with a commit to the GitHub repository. This triggers a build in CircleCI, which runs the integration tests and builds a Docker image. If the build is successful, the image is pushed to the ECR repository. The FluxCD operator in the cluster watches the ECR repository for changes, and for environments where auto deploy is enabled, it updates the HelmRelease resource for the service with the updated image tag which triggers an update to the cluster. For environments where auto deploy is not enabled, such as stage and production, the HelmRelease resource is manually updated with the new image tag by an admin and committed to the Git repo which triggers the update to the cluster. The HelmRelease resource also defines all the values for the service's Helm chart, so updates to the various Kubernetes and Istio configurations, as well as application specific properties, can be applied in the manner and will be fully auditable and reversible.
 
 # Load Testing
 
