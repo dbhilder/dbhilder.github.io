@@ -57,7 +57,8 @@ Most recently, efforts were underway to investigate opportunities that could res
 
 ***Efficient chat summarization and question and answering***  
 A base LLM was fine-tuned using chat messages and other user generated content, allowing for chat histories to be summarized or questions
-about chat histories to be answered without having to inject the chat history into a prompt.
+about chat histories to be answered without having to inject the chat history into a prompt. Future optimization that was being considered was 
+to further fine-tune the LLM to better understand internet slang common in group chats.
 
 ***Improve moderation through human feedback***  
 All user generated content published to the system was subject to moderation. The first step in this moderation process was to run inferences
