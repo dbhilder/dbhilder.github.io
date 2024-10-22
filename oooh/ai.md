@@ -59,12 +59,12 @@ Most recently, efforts were underway to investigate opportunities that could res
 A base LLM was fine-tuned using chat messages and other user generated content, allowing for chat histories to be summarized or questions
 about chat histories to be answered without having to inject the chat history into a prompt.
 
-***Improve moderation through human feedback***
+***Improve moderation through human feedback***  
 All user generated content published to the system was subject to moderation. The first step in this moderation process was to run inferences
 on the content to generate classifications that could be used to determine its safety. A report was then put in a human monitored queue so the
 content could be reviewed and released or rejected. The plan was to fine-tune the models with the decisions made by these human moderators, resulting
 in safety scores that would reflect Oooh's values more and more over time.
 
-***User-centric image generation***
+***User-centric image generation***  
 A feature was planned that would make use of the fine-tuning technique outlined by the DreamBooth paper to support generating custom images based
 on a model trained on images users provided of themselves. This is similar to the Dreams feature provided by SnapChat.
