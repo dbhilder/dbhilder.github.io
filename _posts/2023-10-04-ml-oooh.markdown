@@ -5,31 +5,14 @@ date:   2023-10-04 12:13:24 -0700
 categories: oooh
 ---
 
-Generative AI is all the rage right now, and since we pivoted to a chat app, it seems like a good fit for us.
-To get a better grip on what ML is all about, I dove into the xx course offered by deepleanring.ai.
-The video below is the presentation I gave to my team, summarizing what I had learned from that 1 month course
-into a 1 hour session, with the intent of getting us all on the same page.
+In early 2023, ChatGPT was really getting noticed and there was a lot of hype around machine learning and generative AI.
+At that time, the Oooh platform had just pivoted to support a group chat app, and generative AI seemed like an obvious fit.
+However, I wanted to get beyond the hype and try to understand how it worked, so I could figure out how best to make
+use of it in our platform.
 
-<!--
-<video width="640" height="480" controls>
-  <source src="../../../../assets/MLOooh.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
--->
+While looking for materials on the subject, I came across the [Machine Learning specialization](https://www.deeplearning.ai/courses/machine-learning-specialization/) offered by DeepLearning.AI, and decided to try that. I highly recommend it for anyone looking
+to go deeper into machine learning. So much so, in fact, that I wanted to pass that knowledge on to my team. 
+The video below is my attempt to condense that 1 month course down into an hour or so. Production values are low, but I thought I'd
+share it out in case anybody else is looking for a crash course on the inner workings of machine learning, 
 
-<!--
-https://youtu.be/TyMRp5PVS7k
-https://www.youtube.com/watch?v=TyMRp5PVS7k
-<iframe width="640" height="480" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
--->
 <iframe width="640" height="480" src="https://www.youtube.com/embed/TyMRp5PVS7k" frameborder="0" allowfullscreen></iframe>
-
-<!--
-<video id="my-video" class="video-js" controls preload="auto" width="640" height="480">
-  <source src="../../../../assets/MLOooh.mp4" type="video/mp4">
-</video>
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-<script>
-  var player = videojs('my-video');
-</script>
--->
