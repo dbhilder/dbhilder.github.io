@@ -98,7 +98,7 @@ When the platform pivoted to a group chat app, the chat service was introduced t
 
 The Oooh platform was originally designed to support the sharing a type of multimedia content which we called "ooohs". An oooh could be something as simple as a text or video post, or it could be a complex activity that could include game play logic and state, as well as a variety of media assets needed for that experience. Ooohs proved to be a flexible way to represent a wide variety of content, and that functionality was maintained even as the platform pivoted to a group chat app.
 
-There were a number of steps required to safely and robustly share content on the platform, so a suite of services was developed to implement a publish pipeline. The publish process would start with a request to the content service indicating what assets to publish. This service would then make use of the upload service to get the presigned urls that the client would upload the assets to. When the upload was complete, a service provider like Mux or Sanity would ingest the asset and prepare it for delivery. As each asset associated with the content completed its upload, an asset analysis service would analyze the asset's media and assign it a safety score. A moderation service would wait until all assets associated with the content had been scored, then use the user's reputation and the safety score of each asset to determine if the content could be published. Content that was not automatically approved would be put in a queue for manual review, where it could be approved or rejected by a human moderator using the community support tools.
+There were a number of steps required to safely and robustly share content on the platform, so a suite of services was developed to implement a publish pipeline. The publish process would start with a request to the content service indicating what assets to publish. This service would then make use of the upload service to get the presigned urls that the client would upload the assets to. When the upload was complete, a service provider like Mux or Sanity would ingest the asset and prepare it for delivery. A priority queueing system was developed to allow content from high profile users, such as creators, to be processed ahead of other content. As each asset associated with the content completed its upload, an asset analysis service would analyze the asset's media and assign it a safety score. A moderation service would wait until all assets associated with the content had been scored, then use the user's reputation and the safety score of each asset to determine if the content could be published. Content that was not automatically approved would be put in a queue for manual review, where it could be approved or rejected by a human moderator using the community support tools.
 
 ### Notifications
 
@@ -132,6 +132,13 @@ In order to explore the use of [generative AI in the platform](./ai.md), a serve
 
 The community support tools provided a portal for our team to manage application data, moderate content, and provide support to our users.
 The tools were implemented using node.js and react.
+
+***Moderation Report Queue***
+<img src="../assets/moderation_report_queue.png" alt="Moderation Report Queue" width="600">
+
+***Live Feed of Publish Activity***
+<img src="../assets/publish_activity.png" alt="Publish Activity Feed" width="600">
+
 
 # CI/CD Pipeline
 
